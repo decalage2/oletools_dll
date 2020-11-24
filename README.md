@@ -16,6 +16,9 @@ from oletools.
 
 A sample C client is also provided, to show how the DLL can be called from C.
 
+For now it is necessary to have Python and oletools installed to use oletools.dll, 
+but in future versions it should be all self-contained, without dependencies.
+
 # How it works
 
 The oletools DLL is compiled from Python code thanks to 
