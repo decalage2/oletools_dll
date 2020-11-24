@@ -1,5 +1,5 @@
 # oletools_dll
-This experimental project aims to produce a DLL (for Windows) 
+This *very* experimental project aims to produce a DLL (for Windows) 
 to run some [oletools](https://github.com/decalage2/oletools) 
 functions from any language other than Python, such as C or Golang.
 This can be used for example to scan suspicious documents to detect
@@ -27,6 +27,44 @@ This is implemented using 3 files:
   which call oletools.
 - oletools_dll.h defines the C API of oletools.dll, matching oletools_dll_api.py
 - build_oletools_dll.py calls cffi to compile and build oletools.dll
+
+# Quick demo
+
+To test it, you may try the pre-built oletools.dll and the sample client
+call_olevba.exe available in the repository:
+1. Install **Python 3.9 64 bits** if you don't already have it 
+   (other versions will not work with the pre-built DLL, 
+   see below to build it yourself)
+2. Install **oletools**: pip install -U oletools
+3. Download **oletools.dll** and **call_olevba.exe** from the 
+   [releases page](https://github.com/decalage2/oletools_dll/releases/tag/v0.0.1-alpha)
+4. Copy both files to the same folder
+5. In a CMD window, run `call_olevba.exe <filename>`, with <filename> pointing to a MS Office file
+  with VBA macros.
+6. the output should be similar to this:
+
+```
+c:\Users\xyz\Dev\oletools_dll\sample_client_C>call_olevba.exe Word_macro.doc
+Sample C Client for the oletools DLL
+
+Loading oletools.dll
+Calling get_all_macros("Word_macro.doc"):
+--- VBA CODE: -----------------------------------------------------------------
+Attribute VB_Name = "ThisDocument"
+Attribute VB_Base = "1Normal.ThisDocument"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+Attribute VB_TemplateDerived = True
+Attribute VB_Customizable = True
+Attribute VB_Control = "CommandButton1, 0, 0, MSForms, CommandButton"
+Private Sub CommandButton1_Click()
+x = MsgBox("This is a VBA macro")
+End Sub
+-------------------------------------------------------------------------------
+```  
+  
 
 # Requirements
 
@@ -61,29 +99,6 @@ To use the DLL, you will need:
 - copy oletools.dll in the same directory, or make sure it is reachable by PATH
 - run call_olevba.exe <filename>, with <filename> pointing to a MS Office file
   with VBA macros.
-- the output should be similar to this:
-
-```
-c:\Users\xyz\Dev\oletools_dll\sample_client_C>call_olevba.exe Word_macro.doc
-Sample C Client for the oletools DLL
-
-Loading oletools.dll
-Calling get_all_macros("Word_macro.doc"):
---- VBA CODE: -----------------------------------------------------------------
-Attribute VB_Name = "ThisDocument"
-Attribute VB_Base = "1Normal.ThisDocument"
-Attribute VB_GlobalNameSpace = False
-Attribute VB_Creatable = False
-Attribute VB_PredeclaredId = True
-Attribute VB_Exposed = True
-Attribute VB_TemplateDerived = True
-Attribute VB_Customizable = True
-Attribute VB_Control = "CommandButton1, 0, 0, MSForms, CommandButton"
-Private Sub CommandButton1_Click()
-x = MsgBox("This is a VBA macro")
-End Sub
--------------------------------------------------------------------------------
-```  
 
 # How to implement your own client
 
