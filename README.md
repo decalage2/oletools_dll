@@ -39,7 +39,7 @@ call_olevba.exe available in the repository:
 3. Download **oletools.dll** and **call_olevba.exe** from the 
    [releases page](https://github.com/decalage2/oletools_dll/releases/tag/v0.0.1-alpha)
 4. Copy both files to the same folder
-5. In a CMD window, run `call_olevba.exe <filename>`, with <filename> pointing to a MS Office file
+5. In a CMD window, run `call_olevba.exe <filename>`, with `<filename>` pointing to a MS Office file
   with VBA macros.
 6. the output should be similar to this:
 
@@ -71,7 +71,7 @@ End Sub
 To build the DLL (and optionally the sample C client), you will need:
 - Python 3.x (tested with Python 3.9 64 bits)
 - cffi (pip install -U cffi)
-- a C compiler, such as Build Tools for Visual Studio 2019
+- a C compiler, such as Build Tools for Visual Studio 2019 -
   See https://wiki.python.org/moin/WindowsCompilers
 
 To use the DLL, you will need:
@@ -97,7 +97,7 @@ To use the DLL, you will need:
 # How to run the sample C client
 
 - copy oletools.dll in the same directory, or make sure it is reachable by PATH
-- run call_olevba.exe <filename>, with <filename> pointing to a MS Office file
+- run `call_olevba.exe <filename>`, with `<filename>` pointing to a MS Office file
   with VBA macros.
 
 # How to implement your own client
